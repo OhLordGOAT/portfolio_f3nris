@@ -1,0 +1,92 @@
+.container-skill {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.categorie {
+    color: var(--color-white);
+    border: 1px solid var(--color-blackV2);
+    text-align: center;
+    border-radius: 4px;
+    width: 340px;
+    height: max-content;
+}
+
+.title {
+    margin-bottom: 1rem;
+    padding: 6px 6px 6px 6px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--color-blackV2);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    padding-bottom: 6px;
+    padding-top: 6px;
+}
+
+.list_top {
+    color: #E5C0A6;;
+}
+
+.list_bad {
+    color: #9ab1e7;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+
+.nom {
+    display: flex;
+    justify-content: start;
+}
+
+
+.progress_bar {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.bad_point {
+    background: var(--color-white);
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.good_point {
+    background: var(--color-tertiary);
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.information {
+    color: #9ab1e7;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: small;
+    justify-content: center;
+}
+
+
