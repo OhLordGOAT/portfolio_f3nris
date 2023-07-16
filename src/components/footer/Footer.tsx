@@ -2,6 +2,8 @@ import Logo from '../../../src/assets/logowbg.png'
 import {FiLinkedin, FiDribbble, FiGithub} from "react-icons/fi"
 import "./footer.css"
 
+const currentYear = new Date().getFullYear()
+
 const Footer = () => {
     return (
         <footer>
@@ -19,7 +21,7 @@ const Footer = () => {
             <a href="#contact" className='btn btn-primary btn_contact'>Me contacter</a>
 
             <div className="copyright">
-                Copyright @2022 by Guillaume HELG. All Rights Reserved
+                Copyright @{currentYear} by Guillaume HELG. All Rights Reserved
             </div>
         </footer>
     )

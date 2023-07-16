@@ -3,6 +3,31 @@ import {FaAward} from "react-icons/fa"
 import {FiUsers} from "react-icons/fi"
 import Me1 from "../../assets/pdp/moi1.jpg"
 
+
+function calculateAge(birthDate: Date): number {
+    const currentDate: Date = new Date();
+    const birthYear: number = birthDate.getFullYear();
+    const birthMonth: number = birthDate.getMonth();
+    const birthDay: number = birthDate.getDate();
+  
+    const currentYear: number = currentDate.getFullYear();
+    const currentMonth: number = currentDate.getMonth();
+    const currentDay: number = currentDate.getDate();
+  
+    let age: number = currentYear - birthYear;
+  
+    if ( currentMonth < birthMonth ||
+      (currentMonth === birthMonth && currentDay < birthDay)
+    ) {
+      age--;
+    }
+  
+    return age;
+  }
+
+  const age: number = calculateAge(new Date('2002-01-06'));
+  
+
 const About = () => {
     return (
     <section id="about">
@@ -33,7 +58,7 @@ const About = () => {
                 </article>
             </div>
             <p className='about_text'>
-              Je m'appelle Guillaume HELG. J'ai 21 ans et j'étudie actuellement en 2ième année de Licence MIASHS au sein de l'université
+              Je m'appelle Guillaume HELG. J'ai {age} ans et j'étudie actuellement en 2ième année de Licence MIASHS au sein de l'université
               Paul Sabatier à Toulouse. Passionné d'informatique, j'aime réaliser des projets me permettant d'acquérir de nouvelles compétences
               et connaissances.
             </p>
