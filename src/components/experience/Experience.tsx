@@ -1,31 +1,32 @@
 import { experiences } from '../../content/experiences'
 import styled, { keyframes } from 'styled-components'
 
+const animations = {
+    moveline: keyframes`
+        0% {
+            height: 0;
+        }
+        100% {
+            height: 100%;
+        }
+    `, 
+
+    movedown: keyframes`
+        0% {
+            opacity: 1;
+            transform: translateY(-30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    `
+};
+
 const ContainerExperience = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center; 
-`
-const moveline = keyframes`
-    0% {
-        height: 0;
-    }
-
-    100% {
-        height: 100%;
-    }
-`;
-
-const movedown = keyframes`
-    0% {
-        opacity: 1;
-        transform: translateY(-30px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
 `;
 
 const Timeline = styled.ul`
@@ -43,41 +44,30 @@ const Timeline = styled.ul`
         left: 50%;
         margin-left: -3px;
         z-index: -1;
-        animation: ${moveline} 6s linear forwards;
-    }
+        animation: ${animations.moveline} 6s linear forwards;
+    };
 
     @media screen and (max-width: 600px) {
         margin: 50px auto;
 
         &:after {
             left: 31px;
-        }
-    }
-
+        };
+    };
 `;
 
 const ContainerCards = styled.div`
     padding: 10px 50px;
     position: relative;
     width: 50%;
-    animation: ${movedown} 1s linear forwards;
+    animation: ${animations.movedown} 1s linear forwards;
     opacity: 0;
 
-    &:nth-child(1) {
-        animation-delay: 0s;
-    }
-
-    &:nth-child(2) {
-        animation-delay: 1s;
-    }
-
-    &:nth-child(3) {
-        animation-delay: 2s;
-    }
-
-    &:nth-child(4) {
-        animation-delay: 3s;
-    }
+    /* TODO : solve problem to get the index of the card to apply formula and use animation delay
+    
+    &:nth-child(n) {
+        animation-delay: ${(props) => props.tabIndex * 1}s;
+    } */
 
     &.left-container {
         left: 0;
@@ -125,10 +115,7 @@ const Logo = styled.img`
     }
 
     @media screen and (max-width: 600px) {
-        .right-container & {
-            left: 10px;
-        }
-
+        .right-container &,
         .left-container & {
             left: 10px;
         }
@@ -191,7 +178,7 @@ const Experience = () => {
     <ContainerExperience className='container'>
         <Timeline>
             {experiences.map((experience, index) => (
-                <ContainerCards className={index % 2 === 0 ? 'left-container' : 'right-container'} key={index}>
+                <ContainerCards className={`${index % 2 === 0 ? 'left-container' : 'right-container'}`} key={index} >
                     <Logo src={experience.logo} alt={experience.name}/>
                     <Card>
                         <Title>{experience.title} @{experience.name}</Title>
