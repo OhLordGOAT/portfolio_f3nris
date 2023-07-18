@@ -1,111 +1,209 @@
-import { useState } from 'react'
-import "./experience.css"
-import { FiMapPin, FiCheckCircle, FiExternalLink } from "react-icons/fi"
-import { experiences } from '../../content/exp2.tsx'
-import { schools } from '../../content/exp2.tsx'
+import { experiences } from '../../content/experiences'
+import styled, { keyframes } from 'styled-components'
 
-interface Experience {
-    title: string;
-    company: string;
-    lieu: string;
-    tasks: string[];
-    technos: string[];
-    content: string;
-    date: string;
-    lien: string;
-    logo: string;
-  }
-
-function Accordion({title, company, lieu, tasks, technos, content, date, lien, logo} : Experience ) {
-    const [active, setActive] = useState(false)
-  
-    const handleToggle = () => {
-      setActive(!(active))
+const ContainerExperience = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+`
+const moveline = keyframes`
+    0% {
+        height: 0;
     }
 
-    return (
-      <div className={`accordion ${active && "active"}`}>
-        <div className="accordion__title" onClick={handleToggle}>
-            {title} @{company}<span className='accordion__date'>{date}</span><span className="accordion__icon"></span>
-        </div>
-        <div className="accordion__content accordion-content">
-            <div className='accordion-content-item'>
-                <div className="accordion-description">
-                    <div className="accordion-company-contact">
-                        <ul className='accordion-infos-comp'>
-                            <li className='accordion-info-comp'><FiMapPin/>{lieu}</li>
-                            <li className='accordion-info-comp'><FiExternalLink/><a href={lien} target="_blank" rel="noreferrer">{company}</a></li>
-                        </ul>
-                    </div>
-                    <div className="resume">
-                        {content}
-                    </div>
-                    <div className='content_tasks'>
-                        <ul>
-                            {tasks.map(task => (
-                                <li className='case'><FiCheckCircle/>{task}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className='technologies'>
-                        {technos.map(techno => (
-                            <span key={techno} className="technologie">{techno}</span>
-                        ))}
-                    </div>
-                </div>
-                <div className="accordion-content-logo">
-                    <div className='logo_frame'>
-                        <img src={logo} alt={`logo ${title}`} />
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    )
-}
+    100% {
+        height: 100%;
+    }
+`;
+
+const movedown = keyframes`
+    0% {
+        opacity: 1;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+`;
+
+const Timeline = styled.ul`
+    position: relative;
+    max-width: 1200px;
+    margin: 100px auto;
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 100%;
+        background: #fff;
+        top: 0;
+        left: 50%;
+        margin-left: -3px;
+        z-index: -1;
+        animation: ${moveline} 6s linear forwards;
+    }
+
+    @media screen and (max-width: 600px) {
+        margin: 50px auto;
+
+        &:after {
+            left: 31px;
+        }
+    }
+
+`;
+
+const ContainerCards = styled.div`
+    padding: 10px 50px;
+    position: relative;
+    width: 50%;
+    animation: ${movedown} 1s linear forwards;
+    opacity: 0;
+
+    &:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    &:nth-child(2) {
+        animation-delay: 1s;
+    }
+
+    &:nth-child(3) {
+        animation-delay: 2s;
+    }
+
+    &:nth-child(4) {
+        animation-delay: 3s;
+    }
+
+    &.left-container {
+        left: 0;
+    }
+
+    &.right-container {
+        left: 50%;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        padding-left: 80px;
+        padding-right: 25px;
+
+        &.right-container {
+            left: 0;
+        }
+    }
+`;
+
+const Card = styled.li`
+    padding: 20px 30px;
+    background: #0c3c9c;
+    position: relative;
+    border-radius: 20px;
+    font-size: 15px;
+
+    @media screen and (max-width: 600px) {
+        font-size: 13px;
+    }
+`;
+
+const Logo = styled.img`
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    right: -20px;
+    top: 32px;
+    z-index: 10;
+    background-color: #fff;
+
+    .right-container & {
+        left: -20px;
+    }
+
+    @media screen and (max-width: 600px) {
+        .right-container & {
+            left: 10px;
+        }
+
+        .left-container & {
+            left: 10px;
+        }
+    }
+`;
+
+const Title = styled.h4`
+    font-weight: 600;
+`;
+
+const Date = styled.small`
+    display: inline-block;
+    margin-bottom: 15px;
+
+    @media screen and (max-width: 600px) {
+        margin-bottom: 10px;
+    }
+`;
+
+const ContainerArrow = styled.span`
+    &.left-container-arrow {
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: 38px;
+        z-index: 1;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 15px solid #0c3c9c;
+        right: 36px;
+
+        @media screen and (max-width: 600px) {
+            border-right: 15px solid #0c3c9c;
+            border-left: 0;
+            left: 66px;
+        }
+    }
+
+    &.right-container-arrow {
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: 38px;
+        z-index: 1;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-right: 15px solid #0c3c9c;
+        left: 36px;
+
+        @media screen and (max-width: 600px) {
+            border-right: 15px solid #0c3c9c;
+            border-left: 0;
+            left: 66px;
+        }
+    }
+`;
 
 const Experience = () => {
-    return (
-        <section id="experience" className='container'>
-            <h5>--- Mon vécu d'informaticien ---</h5>
-            <h2>Mes expériences</h2>
-
-            <div className='container container-experience'>
-                <div className='accordion_container'>
-                    {experiences.map(experience => (
-                        <Accordion 
-                            title={experience.title}
-                            company={experience.name}
-                            date={experience.date}
-                            lieu={experience.lieu}
-                            content={experience.resume}
-                            tasks={experience.point}
-                            technos={experience.technologie}
-                            lien={experience.lien}
-                            logo={experience.logo}
-                        />
-                    ))}
-                </div>
-
-
-                <div className='accordion_container'>
-                    {schools.map(school => (
-                        <Accordion 
-                            title={school.title}
-                            company={school.name}
-                            date={school.date}
-                            lieu={school.lieu}
-                            content={school.resume}
-                            tasks={school.point}
-                            technos={school.technologie}
-                            lien={school.lien}
-                            logo={school.logo}
-                        />
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
+  return (
+    <ContainerExperience className='container'>
+        <Timeline>
+            {experiences.map((experience, index) => (
+                <ContainerCards className={index % 2 === 0 ? 'left-container' : 'right-container'} key={index}>
+                    <Logo src={experience.logo} alt={experience.name}/>
+                    <Card>
+                        <Title>{experience.title} @{experience.name}</Title>
+                        <Date>{experience.date}</Date>
+                        <p>{experience.resume}</p>
+                    </Card>
+                    <ContainerArrow className={index % 2 === 0 ? 'left-container-arrow' : 'right-container-arrow'} key={index}></ContainerArrow>
+                </ContainerCards>
+            ))} 
+        </Timeline>
+    </ContainerExperience>
+  )
 }
-export default Experience
 
+export default Experience

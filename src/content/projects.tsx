@@ -94,18 +94,5 @@ export const data = [
                       sur une machine virtuelle Debian lancée par VirtualBox`,
         github: 'https://gitlab.com/ghelg/ProjetS3S4-Allo-memoire',
     }
-    // },
-    // {
-    //     id: 6,
-    //     image: img1,
-    //     logo: Logo,
-    //     title: 'Résolveur de rubikcube',
-    //     date: '1er Septembre 2022 - En cours',
-    //     tech: [
-    //         'C',
-    //         'VSCode'
-    //     ],
-    //     description: 'Projet qui consiste à développer une application qui a pour objectif de résoudre un rubikcube',
-    //     github: 'https://github.com/',
-    // }
+    
 ]

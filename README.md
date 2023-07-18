@@ -11,3 +11,4 @@ I'm working on :
 - [] better display for the contact section
 - [] new navigation
 - [] new background and design for the entire portfolio
+- [] create an english version of my portfolio
