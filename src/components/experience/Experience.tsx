@@ -23,7 +23,7 @@ const animations = {
     `
 };
 
-const ContainerExperience = styled.div`
+const ContainerExperience = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -66,7 +66,7 @@ const ContainerCards = styled.div`
     /* TODO : solve problem to get the index of the card to apply formula and use animation delay
     
     &:nth-child(n) {
-        animation-delay: ${(props) => props.tabIndex * 1}s;
+        animation-delay: ${(props) => props.i * 1}s;
     } */
 
     &.left-container {
@@ -178,7 +178,7 @@ const Experience = () => {
     <ContainerExperience className='container'>
         <Timeline>
             {experiences.map((experience, index) => (
-                <ContainerCards className={`${index % 2 === 0 ? 'left-container' : 'right-container'}`} key={index} >
+                <ContainerCards className={`${index % 2 === 0 ? 'left-container' : 'right-container'}`} key={index} i={index} >
                     <Logo src={experience.logo} alt={experience.name}/>
                     <Card>
                         <Title>{experience.title} @{experience.name}</Title>

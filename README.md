@@ -12,3 +12,4 @@ I'm working on :
 - [] new navigation
 - [] new background and design for the entire portfolio
 - [] create an english version of my portfolio
+- [] todo : fix error in experience
